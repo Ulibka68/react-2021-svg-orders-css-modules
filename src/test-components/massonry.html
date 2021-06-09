@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    body {
+      font-family: menlo;
+      background: #999;
+    }
+
+    .grid {
+      max-width: 800px;
+      margin: 0 auto;
+      display: grid;
+      gap: 24px;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .img {
+      background: #fff;
+      height: 20px;
+      margin-bottom: 32px;
+      border-radius: 6px;
+    }
+
+    .img1 {
+      height: 210px;
+    }
+    .img2 {
+      height: 180px;
+    }
+    .img3 {
+      height: 190px;
+    }
+    .img4 {
+      height: 160px;
+    }
+    .img5 {
+      height: 200px;
+    }
+
+  </style>
+</head>
+<body>
+<div class="grid">
+  <div class="col">
+    <div class="img img1"></div>
+    <div class="img img5"></div>
+    <div class="img img4"></div>
+    <div class="img img5"></div>
+  </div>
+  <div class="col">
+    <div class="img img2"></div>
+    <div class="img img1"></div>
+    <div class="img img5"></div>
+  </div>
+  <div class="col">
+    <div class="img img1"></div>
+    <div class="img img4"></div>
+    <div class="img img3"></div>
+  </div>
+</div>
+</body>
+</html>

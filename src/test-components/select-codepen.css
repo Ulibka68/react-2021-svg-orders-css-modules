@@ -1,0 +1,152 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,500);
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ecf0f1;
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+header {
+  padding: 3.5rem 10%;
+  background-color: #fff;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+header svg {
+  max-width: 20px;
+  display: inline-block;
+  fill: #1abc9c;
+  vertical-align: -2px;
+}
+header h1, header h2, header p {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+header h1 {
+  font-weight: 300;
+  color: #1abc9c;
+  letter-spacing: -0.1rem;
+  font-size: 2rem;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+header h2 {
+  font-size: 0.8rem;
+  margin-bottom: 0;
+}
+header h2 span {
+  font-weight: 300;
+  display: inline-block;
+  padding: 0 8px;
+  font-size: 80%;
+  color: #fff;
+  border-radius: 4px;
+}
+header h2 span.js {
+  background-color: #E4A128;
+}
+header h2 span.css {
+  background-color: #0070BB;
+}
+header h2 span.heart {
+  background-color: #EB304A;
+}
+
+p {
+  line-height: 1.5;
+  text-align: left;
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.card-drop {
+  position: relative;
+  margin: 0 auto;
+  perspective: 800px;
+  background: rgba(0, 0, 0, 0.1);
+}
+.card-drop a {
+  display: block;
+  width: 100%;
+  padding: 20px 0 20px 20px;
+  height: 60px;
+  text-decoration: none;
+  color: #217dbb;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease-out;
+}
+.card-drop a i {
+  display: inline-block;
+  width: 20px;
+}
+.card-drop > a.toggle {
+  position: relative;
+  z-index: 100;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transform-origin: 50% 0;
+  transition: 0.1s linear;
+}
+.card-drop > a.toggle:active {
+  transform: rotateX(60deg);
+}
+.card-drop > a.toggle:active:after {
+  transform: rotateX(180deg);
+}
+.card-drop > a.toggle:before, .card-drop > a.toggle:after {
+  content: "";
+  position: absolute;
+}
+.card-drop > a.toggle:before {
+  right: 25px;
+  top: 50%;
+  margin-top: -2.5px;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid rgba(0, 0, 0, 0.8);
+}
+.card-drop > a.toggle.active:before {
+  transform: rotate(180deg);
+}
+.card-drop ul {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  display: block;
+  width: 100%;
+}
+.card-drop ul li {
+  margin: 0 auto;
+  transition: all, 0.3s ease-out;
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  width: 100%;
+}
+.card-drop ul li a {
+  border-top: none;
+}
+.card-drop ul li a:hover {
+  background-color: #4aa3df;
+  color: #f3f9fd;
+}
+.card-drop ul li.active a {
+  color: #fff;
+  background-color: #258cd1;
+  cursor: default;
+}
+.card-drop ul li.closed a:hover {
+  cursor: default;
+  background-color: #3498db;
+}
+
+/*# sourceMappingURL=select-codepen.css.map */

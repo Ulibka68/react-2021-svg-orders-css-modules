@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+    /*
+Прислал Владислав Аткишкин
+
+Допиши код так, чтобы Leopard унаследовал от Cat все методы.
+
+Сделай так, чтобы у Leopard метод sayMeow возвращал 'Roar!' А метод
+getPet у Leopard должен возвращать ту строку, возвращает метод у Cat, и
+кроме этого устанавливать леопарду, у которого был вызван метод, в поле
+mood значение 'счастлив'.
+
+Обрати внимание: использование ключевого слова class запрещено.
+Наследование нужно реализовывать через прототипы.
+*/
+
+    function Cat(petName) {
+        console.log('CAT constructor')
+        this.catName=petName;
+    }
+
+    Cat.prototype.sayMeow = () => {
+        return 'Meow!   Meow!   Meow!';
+    };
+    Cat.prototype.getPet = () => {
+        return 'кошка';
+    };
+
+    function Leopard(petName) {
+        Cat.call(this, petName);
+        console.log('Leopard function Leopard')
+    }
+
+    Leopard.prototype=Object.create(Cat.prototype);
+    Leopard.constructor=Leopard;
+
+    Leopard.prototype.sayMeow = () => {
+        return 'Roar!';
+    };
+    Leopard.prototype.getPet = function () {
+        this.mood='счастлив';
+        return Cat.prototype.getPet();
+    };
+
+    let l = new Leopard('лев');
+    console.log(l.sayMeow());
+    console.log(l.getPet());
+    console.log(l);
+
+</script>
+
+<!--
+<script>
+    console.log('******************* SCRIPT3');
+    function Cat() {
+        console.log('CAT constructor')
+        this.catName='musya';
+    }
+
+    Cat.prototype.sayMeow = () => {
+        return 'Meow!   Meow!   Meow!';
+    };
+
+    Cat.prototype.name = () => {
+        console.log(this);
+        return this.catName;
+    };
+    Cat.constructor=Cat;
+
+    let c = new Cat();
+    console.log('c.name() : ', c.name());
+    // console.log(c.catName);
+
+    function Foo(name) {
+        this.name = name;
+    }
+    Foo.prototype.myName = function() {
+        return this.name;
+    };
+    var a = new Foo( "a" );
+    var b = new Foo( "b" );
+    console.log( a.myName()); // "a"
+    console.log( b.myName()); // "b"
+</script>
+-->
+
+</body>
+</html>

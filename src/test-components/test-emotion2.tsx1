@@ -1,0 +1,30 @@
+import React from "react";
+// import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { cx } from "@emotion/css";
+
+const button = css`
+  background: black;
+  color: white;
+  & {
+    margin-left: 8px;
+  }
+`;
+
+const buttonPrimary = css`
+  background: red;
+`;
+const buttonSecondary = css`
+  background: green;
+`;
+
+export const CxTest2 = ({
+  primary,
+  secondary,
+}: {
+  primary?: boolean;
+  secondary?: boolean;
+}) => {
+  console.log(button.name);
+  return <div className={cx(button, buttonPrimary)}>Вася</div>;
+};

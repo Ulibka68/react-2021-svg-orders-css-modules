@@ -1,0 +1,45 @@
+import React from "react";
+// import styled from "@emotion/styled";
+import { css, ClassNames } from "@emotion/react";
+// import { ClassNames } from "@emotion/react";
+
+const button = css`
+  background: black;
+  color: white;
+  & {
+    margin-left: 8px;
+  }
+`;
+
+const buttonPrimary = css`
+  background: red;
+`;
+const buttonSecondary = css`
+  background: green;
+`;
+
+export const CxTest = ({
+  primary,
+  secondary,
+}: {
+  primary?: boolean;
+  secondary?: boolean;
+}) => {
+  console.log(button.name);
+  return (
+    <ClassNames>
+      {({ css, cx }) => (
+        <div
+          className={cx(
+            button,
+            { [buttonPrimary.name]: primary },
+            { [buttonSecondary.name]: secondary }
+          )}
+          // css={button}
+        >
+          Вася
+        </div>
+      )}
+    </ClassNames>
+  );
+};
