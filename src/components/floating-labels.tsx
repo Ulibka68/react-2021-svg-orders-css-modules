@@ -1,15 +1,23 @@
 import React from "react";
-import style from "./floating-labels.module.css";
+import style from "./floating-labels.module.scss";
 
-export const FloatInput = () => (
-  <div className={style.floatingLabel}>
-    <input
-      className={style.floatingInput}
-      type="text"
-      placeholder=" "
-      defaultValue="test"
-    />
-    <span className={style.highlight}>8888</span>
-    <label>Text22</label>
-  </div>
+type colorData = "blue" | "red";
+
+export const FloatInput = ({
+  type = "text",
+  label = "label",
+  color = "blue" as colorData,
+  ...rest
+}) => (
+  <React.Fragment>
+    <div className={style.materialTextfield} data-color={color}>
+      <input type={type} className={style.input} {...rest} />
+      <label data-content={label}>{label}</label>
+    </div>
+    {/*
+    <div className={style.materialTextfield} data-red>
+      <input type="text" required className={style.input} />
+      <label data-content="password">password</label>
+    </div>*/}
+  </React.Fragment>
 );

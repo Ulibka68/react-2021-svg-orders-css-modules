@@ -33,18 +33,22 @@ module.exports = {
           {
             loader: "css-loader",
             options: {
-              importLoaders: 2,
-              // modules: true,
+              importLoaders: devMode ? 1 : 2,
               modules: {
-                auto: /\.module\.\w+$/i,
+                auto: true,
                 mode: "local",
                 exportLocalsConvention: "camelCaseOnly",
+                exportGlobals: true,
+                localIdentName: devMode
+                  ? "[local]__[path]_[name]"
+                  : "[hash:base64]",
+                localIdentName: "[local]",
+                // namedExport: true, - убивает modules
               },
             },
           },
-          "postcss-loader",
-          "sass-loader",
-        ],
+          //    postcss надо запустить только на prod
+        ].concat(devMode ? [] : ["postcss-loader"], ["sass-loader"]),
       },
       {
         test: /\.(js|ts)x?$/,

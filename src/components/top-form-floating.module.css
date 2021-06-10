@@ -3,7 +3,7 @@
 }
 
 
-.DivBG {
+.div-bg {
     background: linear-gradient(
             125deg,
             #ecfcff 0%,
@@ -15,7 +15,7 @@
             #3e64ff calc(72% + 1px),
             #3e64ff 100%
     );
-    max-width: 800px;
+    max-width: 1200px;
     padding: 1rem;
     margin-bottom: 1rem;
 }
@@ -31,7 +31,8 @@
 
 .inpBase {
     display: block;
-    width: 100%;
+    /*width: 100%;*/
+    flex-basis: 15em;
     height: calc(1.5em + 0.75rem + 2px);
     padding: 0.375rem 0.75rem;
     color: #495057;
@@ -50,14 +51,48 @@
     box-shadow: 0 0 0 0.2rem rgba(0 123 255/ 25%);
 }
 
-.Label {
+.label {
     composes: inpBaseFont;
     display: block;
     padding: 0.375rem 0.75rem;
     color: #2929bd;
+    flex-basis: 200px;
 }
 
-.Legend {
+.legend {
     composes:inpBaseFont;
     color: #2929bd;
+}
+
+.input-primary-container {
+    display: flex;
+    flex-basis: 450px;
+    /*max-width: 500px;*/
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+fieldset {
+    display: flex;
+    flex-grow: 0;
+    /*flex-basis: 400px;*/
+    width: 450px;
+    margin: 0 auto;
+}
+
+.centered-submit-button-container {
+    flex-grow: 2;
+    flex-basis: 100%;
+    margin-top: 1em;
+}
+
+.submit-button {
+    margin: 0 auto;
+}
+
+.fieldset-container {
+    flex-basis: 100%;
 }

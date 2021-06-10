@@ -2,11 +2,16 @@ import React from "react";
 import style from "./top-form-floating.module.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-const InputStyle = ({ ...rest }) => (
-  <input className={[style.inpBaseFont, style.inpBase].join(" ")} {...rest} />
+const InputStyle = ({ additionalClassname = "", ...rest }) => (
+  <input
+    className={[style.inpBaseFont, style.inpBase, additionalClassname].join(
+      " "
+    )}
+    {...rest}
+  />
 );
 
-const Label = ({ ...rest }) => <label className={style.Label} {...rest} />;
+const Label = ({ ...rest }) => <label className={style.label} {...rest} />;
 const Option = ({ ...rest }) => (
   <option className={style.inpBaseFont} {...rest} />
 );
@@ -66,15 +71,17 @@ export function TopFormFloating() {
     description: string;
   }) {
     return (
-      <React.Fragment>
-        <Label htmlFor={props.id}>{props.description}</Label>
+      <div className={style.inputPrimaryContainer}>
+        <label className={style.label} htmlFor={props.id}>
+          {props.description}
+        </label>
         <InputStyle id={props.id} type={props.type} {...register(props.id)} />
-      </React.Fragment>
+      </div>
     );
   }
 
   return (
-    <div className={style.DivBG}>
+    <div className={style.divBg}>
       {/*"handleSubmit" will validate your inputs before invoking "onSubmit" */}
       <form onSubmit={handleSubmit(onSubmit)}>
         {/*<Input2 defaultValue="input2" />*/}
@@ -112,23 +119,29 @@ export function TopFormFloating() {
           <Option value="openingWindow">Открывающееся окно</Option>
           <Option value="door">Дверь</Option>
         </Select>
-        <fieldset>
-          <legend className={style.Legend}>Разделитель</legend>
-          <Label htmlFor="horizontalDivider">Горизонтальный разделитель</Label>
-          <InputStyle
-            id="horizontalDivider"
-            type="checkbox"
-            {...register("horizontalDivider")}
-          />{" "}
-          <Label htmlFor="verticalDivider">Вертикальный разделитель</Label>
-          <InputStyle
-            id="verticalDivider"
-            type="checkbox"
-            {...register("verticalDivider")}
-          />
-        </fieldset>
+        <div className={style.fieldsetContainer}>
+          <fieldset>
+            <legend className={style.legend}>Разделитель</legend>
+            <Label htmlFor="horizontalDivider">
+              Горизонтальный разделитель
+            </Label>
+            <InputStyle
+              id="horizontalDivider"
+              type="checkbox"
+              {...register("horizontalDivider")}
+            />{" "}
+            <Label htmlFor="verticalDivider">Вертикальный разделитель</Label>
+            <InputStyle
+              id="verticalDivider"
+              type="checkbox"
+              {...register("verticalDivider")}
+            />
+          </fieldset>
+        </div>
 
-        <InputStyle type="submit" />
+        <div className={style.centeredSubmitButtonContainer}>
+          <InputStyle type="submit" additionalClassname={style.submitButton} />
+        </div>
       </form>
     </div>
   );
