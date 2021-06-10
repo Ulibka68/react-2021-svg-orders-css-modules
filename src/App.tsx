@@ -9,6 +9,7 @@ import "@/styles/main.scss";
 // import { TestListEmotion } from "@/test-components/test-list";
 // import { CxTest5 } from "@/test-components/test-emotion5";
 import { TopFormFloating } from "@/components/top-form-floating";
+import { TestFloatingInput } from "@/test-components/test-floating-input";
 // import { CxTest } from "@/test-components/test-emotion";
 // import { TestFontAwesome } from "@/test-components/test-font";
 
@@ -46,14 +47,10 @@ export const App: React.FC<{}> = () => (
           <li>
             <Link to="/top-form-floating">Form floating</Link>
           </li>
-          {/*
-          <li>
-            <Link to="/gamespace">Поле для игры тестовое</Link>
-          </li>
 
           <li>
             <Link to="/test">Test components</Link>
-          </li>*/}
+          </li>
         </ul>
       </nav>
       <Switch>
@@ -63,12 +60,8 @@ export const App: React.FC<{}> = () => (
         <Route exact path="/test2">
           {/*<TestFontAwesome />*/}
         </Route>
-        <Route exact path="/test3">
-          {/*<TestReactSelect />*/}
-          {/* react select с custom render */}
-          {/*<TestSelectCustStyles />*/}
-          {/*<TestListEmotion />*/}
-          {/*<CxTest5 />*/}
+        <Route exact path="/test">
+          <TestFloatingInput />
         </Route>
         <Route exact path="/top-form-floating">
           <TopFormFloating />

@@ -34,7 +34,12 @@ module.exports = {
             loader: "css-loader",
             options: {
               importLoaders: 2,
-              modules: true,
+              // modules: true,
+              modules: {
+                auto: /\.module\.\w+$/i,
+                mode: "local",
+                exportLocalsConvention: "camelCaseOnly",
+              },
             },
           },
           "postcss-loader",
