@@ -1,9 +1,22 @@
 import React from "react";
 import style from "./top-form-floating.module.css";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { FieldValues } from "react-hook-form/dist/types/fields";
+import { FieldPath } from "react-hook-form/dist/types/utils";
+import { RegisterOptions } from "react-hook-form/dist/types/validator";
+import {
+  UseFormRegister,
+  UseFormRegisterReturn,
+} from "react-hook-form/dist/types/form";
 
-const InputStyle = ({ additionalClassname = "", ...rest }) => (
+const InputStyle = ({
+  register = null as any,
+  name = "",
+  additionalClassname = "",
+  ...rest
+}) => (
   <input
+    {...register(name)}
     className={[style.inpBaseFont, style.inpBase, additionalClassname].join(
       " "
     )}
@@ -18,6 +31,27 @@ const Option = ({ ...rest }) => (
 const Select = ({ ...rest }) => (
   <select className={[style.inpBaseFont, style.inpBase].join(" ")} {...rest} />
 );
+
+const SelectReg = ({
+  register = null as any,
+  name = "",
+  options = [] as Array<{ val: string; descr: string }>,
+  ...rest
+}) => {
+  return (
+    <select
+      className={[style.inpBaseFont, style.inpBase].join(" ")}
+      {...register(name)}
+      {...rest}
+    >
+      {options.map((value) => (
+        <option key={value.val} className={style.inpBaseFont} value={value.val}>
+          {value.descr}
+        </option>
+      ))}
+    </select>
+  );
+};
 
 type Inputs = {
   production_type: string;
@@ -60,7 +94,7 @@ export function TopFormFloating() {
     const res = `${d.getFullYear()}-${addZero(d.getMonth() + 1)}-${addZero(
       d.getDate()
     )}`;
-    console.log(res);
+    // console.log(res);
     return res;
   }
   // console.log(new Intl.DateTimeFormat("de-DE", options).format(date));
@@ -70,12 +104,18 @@ export function TopFormFloating() {
     type: string;
     description: string;
   }) {
+    // console.log("props : ", props);
     return (
       <div className={style.inputPrimaryContainer}>
         <label className={style.label} htmlFor={props.id}>
           {props.description}
         </label>
-        <InputStyle id={props.id} type={props.type} {...register(props.id)} />
+        <input
+          id={props.id}
+          type={props.type}
+          className={[style.inpBaseFont, style.inpBase].join(" ")}
+          {...register(props.id)}
+        />
       </div>
     );
   }
@@ -84,7 +124,6 @@ export function TopFormFloating() {
     <div className={style.divBg}>
       {/*"handleSubmit" will validate your inputs before invoking "onSubmit" */}
       <form onSubmit={handleSubmit(onSubmit)}>
-        {/*<Input2 defaultValue="input2" />*/}
         <InputPrimary id="orderDate" type="date" description="Дата" />
         <InputPrimary id="orderNumber" type="number" description="Заказ №" />
         <InputPrimary id="kantColor" type="input" description="Цвет канта" />
@@ -110,15 +149,23 @@ export function TopFormFloating() {
         <InputPrimary
           id="leftDownToCenterDistance"
           type="number"
-          description="Расстояние до центральной
-оси от левого нижнего угла"
+          description="Расстояние до центральной оси от левого нижнего угла"
         />
-        <Label htmlFor="production_type">Вид изделия</Label>
-        <Select id="production_type" {...register("production_type")}>
-          <Option value="blindWindow">Глухое окно</Option>
-          <Option value="openingWindow">Открывающееся окно</Option>
-          <Option value="door">Дверь</Option>
-        </Select>
+
+        <div className={style.inputPrimaryContainer}>
+          <Label htmlFor="production_type">Вид изделия</Label>
+          <SelectReg
+            id="production_type"
+            register={register}
+            name="production_type"
+            options={[
+              { val: "blindWindow", descr: "Глухое окно" },
+              { val: "openingWindow", descr: "Открывающееся окно" },
+              { val: "door", descr: "Дверь" },
+            ]}
+          />
+        </div>
+
         <div className={style.fieldsetContainer}>
           <fieldset>
             <legend className={style.legend}>Разделитель</legend>
@@ -128,20 +175,22 @@ export function TopFormFloating() {
             <InputStyle
               id="horizontalDivider"
               type="checkbox"
-              {...register("horizontalDivider")}
-            />{" "}
+              register={register}
+              name="horizontalDivider"
+            />
             <Label htmlFor="verticalDivider">Вертикальный разделитель</Label>
             <InputStyle
               id="verticalDivider"
               type="checkbox"
-              {...register("verticalDivider")}
+              register={register}
+              name="verticalDivider"
             />
           </fieldset>
         </div>
 
-        <div className={style.centeredSubmitButtonContainer}>
+        {/*    <div className={style.centeredSubmitButtonContainer}>
           <InputStyle type="submit" additionalClassname={style.submitButton} />
-        </div>
+        </div>*/}
       </form>
     </div>
   );
