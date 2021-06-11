@@ -1,0 +1,17 @@
+.svg-doc-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap:2rem ;
+}
+
+.top-form-floating-container {
+    flex-basis: 100%;
+}
+
+.top-form-floating {
+    margin: 0 auto;
+}
+
+:global(.svg-component) {
+    margin: 0 auto;
+}

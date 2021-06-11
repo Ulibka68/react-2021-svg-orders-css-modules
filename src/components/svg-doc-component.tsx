@@ -1,27 +1,43 @@
 import React from "react";
 import { calcInnerLine2 } from "@/utils/sizes";
+import style from "./svg-doc-component.module.css";
 
-const SvgDefs = ({ children }) => <svg>{children}</svg>;
-const DivContainer = ({ sw, sh, viewBox, children }) => <div>{children}</div>;
-/*
-const SvgDefs = styled.svg`
-  display: none;
-`;
-
-const DivContainer = styled.svg<{
+type SVGContainer = {
   sw: string;
   sh: string;
-}>(
-  {
-    color: "darkorchid",
-  },
-  (props) => ({
-    width: props.sw,
-    height: props.sh,
-    backgroundColor: "aqua",
-    // viewBox: `${props.vMinX} ${props.vMinY} ${props.vWidth} ${props.vHeight}`,
-  })
-);*/
+  vWidth: number;
+  vHeight: number;
+  children: React.ReactNode;
+};
+
+const SVGContainer = ({ sw, sh, vWidth, vHeight, children }: SVGContainer) => {
+  return (
+    <svg
+      width={sw}
+      height={sh}
+      viewBox={`0 0 ${vWidth} ${vHeight}`}
+      className={style.svgBackground}
+    >
+      {children}
+    </svg>
+  );
+};
+
+const SvgDefs = () => (
+  <svg style={{ display: "none" }}>
+    <g id="luversSmall">
+      <circle
+        fill="none"
+        stroke="rgb(255,165,0)"
+        strokeWidth={4}
+        r="10"
+        cx="0"
+        cy="0"
+      />
+      <circle fill="red" stroke="none" r="2" cx="0" cy="0" />
+    </g>
+  </svg>
+);
 
 const defaultProps = {
   leftHeight: 250,
@@ -104,7 +120,6 @@ export class SvgDocComponent extends React.Component<typeof defaultProps> {
       this.state.luvers_paths.push({ x, y });
     }
   }
-
   render() {
     const {
       leftHeight,
@@ -133,33 +148,21 @@ export class SvgDocComponent extends React.Component<typeof defaultProps> {
       luvers_paths,
       y_direction,
     } = this.state;
-    console.log("e, b, c z", e, b, c);
-    console.log("tan34,y0_top_left", tan34);
     const x1 = paddingLeft;
     const y1 = y0_top_left + c / 2;
     const x2 = paddingLeft + width;
     const y2 = y1 + (x2 - x1) * tan34 * y_direction;
-    // const y2 = y1 - 60;
+
+    /*  RENDER */
 
     return (
-      <div>
-        <SvgDefs>
-          <g id="luversSmall">
-            <circle
-              fill="none"
-              stroke="rgb(255,165,0)"
-              strokeWidth={4}
-              r="10"
-              cx="0"
-              cy="0"
-            />
-            <circle fill="red" stroke="none" r="2" cx="0" cy="0" />
-          </g>
-        </SvgDefs>
-        <DivContainer
+      <div className="svg-component">
+        <SvgDefs />
+        <SVGContainer
           sw={sw}
           sh={sh}
-          viewBox={`0 0 ${viewbox_width} ${viewbox_height} `}
+          vWidth={viewbox_width}
+          vHeight={viewbox_height}
         >
           <g
             vectorEffect="non-scaling-stroke"
@@ -168,19 +171,19 @@ export class SvgDocComponent extends React.Component<typeof defaultProps> {
             fill="none"
           >
             <path
-              d={`M ${paddingLeft} ${viewbox_height - paddingTop - leftHeight} 
-              V ${viewbox_height - paddingTop} 
-              H ${paddingLeft + width} 
-              V ${viewbox_height - paddingTop - rightHeight} Z`}
+              d={`M ${paddingLeft} ${viewbox_height - paddingTop - leftHeight}
+                V ${viewbox_height - paddingTop}
+                H ${paddingLeft + width}
+                V ${viewbox_height - paddingTop - rightHeight} Z`}
             />
 
             <path
               d={`M ${paddingLeft + leftInterval}
-                    ${viewbox_height - paddingLeft - leftHeight + b}
-              V ${viewbox_height - paddingTop - downInterval}
-              H ${paddingLeft + width - rightInterval}
-              V ${viewbox_height - paddingTop - rightHeight + e} Z
-              `}
+                      ${viewbox_height - paddingLeft - leftHeight + b}
+                V ${viewbox_height - paddingTop - downInterval}
+                H ${paddingLeft + width - rightInterval}
+                V ${viewbox_height - paddingTop - rightHeight + e} Z
+                `}
             />
           </g>
           <line stroke="blue" strokeWidth="1" x1={x1} y1={y1} x2={x2} y2={y2} />
@@ -203,7 +206,7 @@ export class SvgDocComponent extends React.Component<typeof defaultProps> {
               height={paddingCommon}
             />
           </g>
-        </DivContainer>
+        </SVGContainer>
       </div>
     );
   }

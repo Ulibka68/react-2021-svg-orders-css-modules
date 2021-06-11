@@ -70,7 +70,9 @@ type Inputs = {
   verticalDivider: boolean;
 };
 
-export function TopFormFloating() {
+export function TopFormFloating({ addClassName = "" }) {
+  console.log("addClassName ", addClassName);
+
   const {
     register,
     handleSubmit,
@@ -80,7 +82,6 @@ export function TopFormFloating() {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
-  // console.log(watch("example")); // watch input value by passing the name of it
   const dateChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     console.log(evt.target.value);
   };
@@ -121,7 +122,7 @@ export function TopFormFloating() {
   }
 
   return (
-    <div className={style.divBg}>
+    <div className={[style.divBg, addClassName].join(" ")}>
       {/*"handleSubmit" will validate your inputs before invoking "onSubmit" */}
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputPrimary id="orderDate" type="date" description="Дата" />

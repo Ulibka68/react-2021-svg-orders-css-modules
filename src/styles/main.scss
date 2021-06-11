@@ -5,3 +5,55 @@ html {
   font-size: $font-size;
   color: $font-color;
 }
+
+@media print {
+  body {
+    color: black;
+    background: white;
+    nav, aside {
+      display: none;
+    }
+  }
+
+  body, article {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  @page {
+    margin: 1cm;
+  }
+
+  a[href^="http"]:not([href*="example.com"]):after {
+    content: " (" attr(href) ")";
+  }
+
+  body:after {
+    content: "\ Thank you for printing our article. We hope that some of our other articles can catch your eye as well.";
+    color: #777 !important;
+    font-size: 1em;
+    padding-top: 30px;
+    text-align: center !important;
+  }
+
+  *,
+  *:before,
+  *:after,
+  *:first-letter,
+  p:first-line,
+  div:first-line,
+  blockquote:first-line,
+  li:first-line {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+}
+
+@media print and (color) {
+  * {
+    print-color-adjust: exact;
+  }
+}

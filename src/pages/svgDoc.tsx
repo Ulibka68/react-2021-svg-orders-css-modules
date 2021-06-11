@@ -1,6 +1,7 @@
 import React from "react";
 import { SvgDocComponent } from "@/components/svg-doc-component";
-// import { TopForm } from "components/top-form";
+import { TopFormFloating } from "@/components/top-form-floating";
+import style from "./svg-doc.module.css";
 
 const defaultProps = {
   leftHeight: 250,
@@ -37,8 +38,10 @@ export class SvgDoc extends React.Component<typeof defaultProps> {
       sh,
     } = this.props;
     return (
-      <div>
-        {/*<TopForm />*/}
+      <div className={style.svgDocContainer}>
+        <div className={style.topFormFloatingContainer}>
+          <TopFormFloating addClassName={style.topFormFloating} />
+        </div>
 
         {/*   <SvgDocComponent
           leftHeight={350}

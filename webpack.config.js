@@ -42,7 +42,7 @@ module.exports = {
                 localIdentName: devMode
                   ? "[local]__[path]_[name]"
                   : "[hash:base64]",
-                localIdentName: "[local]",
+                localIdentName: "[local]_[hash:base64:4]",
                 // namedExport: true, - убивает modules
               },
             },
