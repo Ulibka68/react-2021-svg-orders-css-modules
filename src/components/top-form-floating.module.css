@@ -97,3 +97,65 @@ fieldset {
 .fieldset-container {
     flex-basis: 100%;
 }
+
+
+@media print {
+
+    .div-bg {
+        width: 100%;
+        /*border: 2px dashed blue;*/
+    }
+    .input-primary-container {
+        flex-basis: 98mm;
+        /*border: 1px solid green;*/
+        align-items: center;
+    }
+
+    .inpBaseFont {
+        font-size: 12pt;
+        font-weight: 400;
+        line-height: 1.1;
+        font-family: Arial, Verdana, serif;
+        align-items: center;
+    }
+
+
+    .label {
+        padding: 0 ;
+        flex-basis: 200px;
+        height: auto;
+    }
+
+
+    .inpBase {
+        display: block;
+        flex-basis: 15em;
+        height: auto;
+        padding: 0;
+        /*border: 1px solid black;*/
+        border: none;
+    }
+
+    fieldset {
+        width: calc(100% - 30mm);
+        flex-wrap: nowrap;
+        display: block;
+        margin-top: 10pt;
+    }
+    fieldset .label {
+        /*border: 1px solid red;*/
+        display: inline-block;
+    }
+    fieldset .inpBase {
+        /*border: 1px solid green;*/
+        /*max-width: 10mm;*/
+        display: inline-block;
+    }
+    fieldset > .label:before {
+        content: "";
+        padding-right: 30px;
+    }
+
+
+
+}

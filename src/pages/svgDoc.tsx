@@ -54,6 +54,7 @@ export class SvgDoc extends React.Component<typeof defaultProps> {
           paddingCommon={20}
           maxwh={600}
         />*/}
+
         <SvgDocComponent
           leftHeight={500}
           rightHeight={350}
