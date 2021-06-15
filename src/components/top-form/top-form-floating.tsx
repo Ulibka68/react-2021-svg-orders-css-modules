@@ -1,13 +1,9 @@
 import React from "react";
 import style from "./top-form-floating.module.css";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { FieldValues } from "react-hook-form/dist/types/fields";
-import { FieldPath } from "react-hook-form/dist/types/utils";
-import { RegisterOptions } from "react-hook-form/dist/types/validator";
-import {
-  UseFormRegister,
-  UseFormRegisterReturn,
-} from "react-hook-form/dist/types/form";
+
+// import { connect, ConnectedProps } from "react-redux";
+// import { RootState } from "@/redux/store";
 
 const InputStyle = ({
   register = null as any,
@@ -71,7 +67,7 @@ type Inputs = {
 };
 
 export function TopFormFloating({ addClassName = "" }) {
-  console.log("addClassName ", addClassName);
+  // const { addClassName = "" } = props;
 
   const {
     register,
@@ -196,3 +192,18 @@ export function TopFormFloating({ addClassName = "" }) {
     </div>
   );
 }
+
+// подключить Redux
+/*
+
+const connector = connect((state: RootState) => state.ordersState);
+
+/!*
+ * Infers the type of props that a connector will inject into a component.
+ *!/
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+type Props = PropsFromRedux & { addClassName: string };
+
+export const GameSpace = connector(TopFormFloating);
+*/

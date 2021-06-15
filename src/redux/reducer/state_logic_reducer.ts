@@ -147,12 +147,8 @@ export const lifeStateSlice = createSlice<
   },
 });
 
-export const {
-  initState,
-  randomSeed,
-  planer1Seed,
-  nextState,
-} = lifeStateSlice.actions;
+export const { initState, randomSeed, planer1Seed, nextState } =
+  lifeStateSlice.actions;
 
 const caclNeighborsAction = lifeStateSlice.actions.caclNeighbors;
 export { caclNeighborsAction as caclNeighbors };

@@ -1,6 +1,6 @@
 import React from "react";
 import { SvgDocComponent } from "@/components/svg-doc-component";
-import { TopFormFloating } from "@/components/top-form-floating";
+import { TopFormFloating } from "components/top-form/top-form-floating";
 import style from "./svg-doc.module.css";
 
 const defaultProps = {
